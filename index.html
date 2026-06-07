@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Favorite Idiot 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffb6d9,#ffd6eb);
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.screen{
+    text-align:center;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 25px rgba(0,0,0,0.15);
+    max-width:500px;
+    width:90%;
+}
+
+h1{
+    color:#ff4fa3;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:20px;
+    color:#444;
+    margin-top:15px;
+}
+
+button{
+    padding:12px 24px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#ff4fa3;
+    color:white;
+}
+
+#noBtn{
+    background:#ffd0e6;
+    position:absolute;
+}
+
+img{
+    width:100%;
+    max-height:350px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.nextBtn{
+    background:#ff4fa3;
+    color:white;
+}
+
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-50px;
+    font-size:25px;
+    animation:floatUp 6s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div id="app">
+
+    <!-- PAGE 1 -->
+    <div class="screen" id="page1">
+        <h1>Are you idiot? 🤔</h1>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+</div>
+
+<script>
+
+// Floating Hearts
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*25)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+},300);
+
+// No Button Runs Away
+const noBtn=document.getElementById("noBtn");
+
+function moveButton(){
+    const x=Math.random()*(window.innerWidth-120);
+    const y=Math.random()*(window.innerHeight-80);
+
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
+// Yes Button
+document.getElementById("yesBtn").onclick=function(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="screen">
+
+<img src="photo1.jpg">
+
+<h1>Cuteness Overloaded ✨</h1>
+
+<p>
+How can one person be this cute? 😭💖
+</p>
+
+<button class="nextBtn" onclick="page2()">Next ➜</button>
+
+</div>
+
+`;
+}
+
+// PAGE 2
+function page2(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="screen">
+
+<img src="photo2.jpg">
+
+<h1>OHHH MY CUTEEE IDIOT 😭💕</h1>
+
+<p>
+You're funny, chaotic and impossible to ignore 😂💖
+</p>
+
+<button class="nextBtn" onclick="page3()">Next ➜</button>
+
+</div>
+
+`;
+}
+
+// PAGE 3
+function page3(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="screen">
+
+<img src="photo3.jpg">
+
+<h1>My Favorite Angela Player 🐱💖</h1>
+
+<p>
+Thanks for all the laughs, trolling and fun moments 😂✨
+<br><br>
+You're awesome!
+</p>
+
+<button class="nextBtn" onclick="finishPage()">Finish 🎉</button>
+
+</div>
+
+`;
+}
+
+// FINAL PAGE
+function finishPage(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="screen">
+
+<h1>💖 THE END 💖</h1>
+
+<p>
+Stay cute, stay funny and keep trolling 😂✨
+<br><br>
+Have an amazing day! 🌸
+</p>
+
+</div>
+
+`;
+}
+</script>
+
+</body>
+</html>
